@@ -38,7 +38,7 @@ data/        # (예정) members.json, publications.json 등 데이터 분리 시
 - Research Topics 4개: ① 시스템 안전해석(MARS-KS·RELAP5·SPACE) ② 비등 열전달·CHF ③ 차세대 원자로 열수력(MSR·PCSG) ④ 통합 에너지 시스템(Modelica)·원전 탄력운전. **인공지능(AI) 연구 내용은 넣지 않는다** (사용자 요청, 2026-11-06). 히어로 인용문·Join us·Facility 카드에서도 제거함.
 - 구성원·논문·특허는 **실제 정보만** 기입. 임의 생성 금지.
 - 구성원 6명은 전원 학부연구생(Undergraduate Researcher). 카드 순서: 박하영-김태우-오상훈-유재운-임형석-문민기 (사용자 지정). 박하영 사진은 원본의 검은 테두리를 잘라낸 것. Alumni는 이동호만 표시 (임혜윰·노혜민은 사용자 요청으로 제외).
-- Publication은 CV 기준. SCIE 10·KCI 2는 DOI 링크(새 탭), Under review 3건 포함, 학회 39건·특허 4건은 링크 없음. "in preparation" 항목은 싣지 않음.
+- Publication은 CV 기준. SCIE 10·KCI 2는 DOI 링크(새 탭), Under review 3건 포함, 학회 41건(KNS 2026 추계 2건은 2026-11-06 사용자 제공으로 추가, 임형석 발표는 Best Poster Award 표기)·특허 4건은 링크 없음. "in preparation" 항목은 싣지 않음.
 - 언어: 영문 메뉴/제목 + 한글 본문 혼용 (NETHS 방식).
 
 ## 채워야 할 자리표시자
