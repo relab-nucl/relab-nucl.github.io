@@ -18,6 +18,7 @@ images/      # relab_logo.png(헤더 로고), professor.jpg(교수 사진), memb
              # gallery/*.jpg (노션 Gallery 전체 23개 행사 + 메인 페이지 수상 사진 1장 = 24장, 행사당 1장, 긴 변 1200px, 파일명 YYYY-MM-DD.jpg)
              # Gallery는 최신 8장만 보이고 "View all photos" 버튼(#gal-more)으로 .more-item을 펼침
              # 원본: Dropbox 05. RELAB/연구실 로고, 05. RELAB/서명 및 사진/{교수 증명사진, 학생 증명사진}
+qr/          # 홈페이지 QR (relab_qr.png 기본, relab_qr_logo.png 로고 삽입, relab_qr.svg 벡터, relab_qr_card.png 포스터용). 생성: python qrcode+zxing-cpp, 오류정정 H, 남색 #004287
 data/        # (예정) members.json, publications.json 등 데이터 분리 시 사용
 ```
 
