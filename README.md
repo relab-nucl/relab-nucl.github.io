@@ -8,10 +8,16 @@
 터미널에서 `python3 -m http.server 8765`를 이 폴더에서 실행한 뒤 `http://localhost:8765`로 접속해도 됩니다.
 
 ## 2. 배포 (GitHub Pages)
-1. GitHub에 저장소를 만들고 이 폴더의 파일을 올립니다.
-2. 저장소 **Settings → Pages → Source**를 `main` 브랜치 `/ (root)`로 지정합니다.
-3. 1~2분 후 `https://<계정명>.github.io/<저장소명>/` 주소로 접속됩니다.
-4. 이후에는 파일을 수정해 커밋(push)하면 자동으로 반영됩니다.
+- 공개 주소: **https://jykimth95.github.io/relab-homepage/**
+- 저장소: https://github.com/jykimth95/relab-homepage (`main` 브랜치 `/ (root)`에서 Pages 자동 빌드)
+- 파일을 수정한 뒤 아래 세 줄을 실행하면 1~2분 안에 사이트에 반영됩니다.
+
+```bash
+git add -A
+git commit -m "내용 수정"
+git push
+```
+- 처음 쓰는 컴퓨터에서는 `gh auth login`(GitHub CLI) 또는 GitHub Desktop으로 로그인한 뒤 push 하세요.
 
 ## 3. 자주 하는 수정
 
