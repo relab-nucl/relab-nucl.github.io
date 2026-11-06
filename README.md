@@ -8,8 +8,8 @@
 터미널에서 `python3 -m http.server 8765`를 이 폴더에서 실행한 뒤 `http://localhost:8765`로 접속해도 됩니다.
 
 ## 2. 배포 (GitHub Pages)
-- 공개 주소: **https://jykimth95.github.io/relab-homepage/**
-- 저장소: https://github.com/jykimth95/relab-homepage (`main` 브랜치 `/ (root)`에서 Pages 자동 빌드)
+- 공개 주소: **https://relab-nucl.github.io/**
+- 저장소: https://github.com/relab-nucl/relab-nucl.github.io (`main` 브랜치 `/ (root)`에서 Pages 자동 빌드)
 - 파일을 수정한 뒤 아래 세 줄을 실행하면 1~2분 안에 사이트에 반영됩니다.
 
 ```bash

@@ -45,7 +45,7 @@ data/        # (예정) members.json, publications.json 등 데이터 분리 시
 - 상단 유틸바: 전북대학교(jbnu.ac.kr), 양자시스템공학과(atom.jbnu.ac.kr) 링크 반영 완료.
 
 ## 향후 계획
-1. ~~GitHub Pages 호스팅~~ → 완료(2026-11-06): 저장소 `jykimth95/relab-homepage`, 공개 주소 https://jykimth95.github.io/relab-homepage/ . `main`에 push하면 자동 배포.
+1. ~~GitHub Pages 호스팅~~ → 완료(2026-11-06): 저장소 `relab-nucl/relab-nucl.github.io` (GitHub 조직 relab-nucl, 소유자 jykimth95), 공개 주소 https://relab-nucl.github.io/ . `main`에 push하면 자동 배포.
 2. 구성원·논문 데이터를 `data/*.json`으로 분리하고 JS로 렌더링 → 학생이 HTML을 건드리지 않고 JSON만 수정.
 3. (선택) 노션 DB → GitHub Actions → JSON 자동 갱신.
 
