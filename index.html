@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RELAB — Reactor and Energy Systems Laboratory, JBNU</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#004287; --navy-d:#002d5c; --teal:#66D7D5; --teal-d:#3fb8b6;
+  --ink:#1f2a37; --muted:#5b6673; --line:#e3e8ee; --bg:#f5f7fa; --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+section[id],h3[id],div[id]{scroll-margin-top:96px}
+body{font-family:"Noto Sans KR","Montserrat",system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.en{font-family:"Montserrat","Noto Sans KR",sans-serif}
+
+/* ---------- top utility bar ---------- */
+.util{background:var(--navy-d);color:#cfd8e3;font-size:12px}
+.util .wrap{display:flex;justify-content:flex-end;gap:18px;height:30px;align-items:center}
+.util a:hover{color:var(--teal)}
+
+/* ---------- header ---------- */
+header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .logo{height:48px;width:auto;display:block}
+.brand .name{line-height:1.15}
+.brand .name b{display:block;font-size:17px;color:var(--navy);font-weight:700}
+.brand .name span{display:block;font-size:13px;color:var(--navy);font-weight:600;line-height:1.35}
+.brand .name span+span{color:var(--muted);font-weight:500}
+nav.main>ul{display:flex;gap:4px;list-style:none}
+nav.main>ul>li{position:relative}
+nav.main>ul>li>a{display:block;padding:28px 13px;font-weight:600;font-size:14.5px;color:var(--ink);border-bottom:3px solid transparent;white-space:nowrap}
+nav.main>ul>li:hover>a,nav.main>ul>li.active>a{color:var(--navy);border-bottom-color:var(--teal)}
+nav.main .sub{position:absolute;left:0;top:100%;min-width:190px;background:var(--white);border:1px solid var(--line);border-top:3px solid var(--navy);box-shadow:0 10px 28px rgba(0,0,0,.08);list-style:none;display:none;padding:6px 0}
+nav.main>ul>li:hover .sub{display:block}
+nav.main .sub a{display:block;padding:9px 16px;font-size:14px;color:var(--ink)}
+nav.main .sub a:hover{background:var(--bg);color:var(--navy)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;font-size:14px}
+.mobile{display:none;background:var(--white);border-bottom:1px solid var(--line)}
+.mobile.open{display:block}
+.mobile a{display:block;padding:12px 24px;border-top:1px solid var(--line);font-weight:500}
+.mobile a.sub{padding-left:44px;font-weight:400;color:var(--muted)}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(120deg,var(--navy) 0%,#0b5aa8 55%,var(--teal) 140%);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,745px) 1fr;gap:36px;align-items:center}
+.profile{background:rgba(255,255,255,.96);color:var(--ink);border-radius:16px;padding:26px;display:grid;grid-template-columns:150px 1fr;gap:22px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.profile .photo{width:150px;height:190px;border-radius:12px;background:linear-gradient(180deg,#dfe7f0,#c9d5e3);display:grid;place-items:center;color:var(--muted);font-size:12px;text-align:center;padding:0;object-fit:cover;object-position:center top}
+.profile h2{font-size:24px;color:var(--navy);font-weight:700;line-height:1.2}
+.profile .ko{font-size:15px;color:var(--muted);margin-bottom:10px}
+.profile dl{font-size:13.5px;display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:5px}
+.profile dt{color:var(--navy);font-weight:600;white-space:nowrap}
+.profile dd{color:var(--ink)}
+.profile dd a:hover{color:var(--teal-d);text-decoration:underline}
+.profile .rf{list-style:none;display:grid;gap:2px}
+.profile .rf li{padding-left:12px;position:relative;white-space:nowrap}
+.profile .rf li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.plinks{display:flex;align-items:center;gap:8px;margin-top:14px}
+.plinks .btn{margin-top:0}
+.plinks .ic{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--navy);transition:.2s}
+.plinks .ic:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn{display:inline-block;margin-top:14px;padding:9px 18px;border-radius:999px;background:var(--navy);color:#fff;font-size:13px;font-weight:600;transition:.2s}
+.btn:hover{background:var(--teal-d)}
+.btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.15)}
+.welcome h1{font-size:34px;font-weight:700;line-height:1.2;margin-bottom:14px}
+.welcome h1 small{display:block;font-size:16px;font-weight:400;opacity:.85;margin-bottom:10px;letter-spacing:1px}
+.welcome p{font-size:16px;opacity:.92;max-width:520px;margin-bottom:22px}
+
+/* ---------- sections ---------- */
+section.block{padding:70px 0}
+section.block.alt{background:var(--bg)}
+.sec-title{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.sec-title h2{font-size:28px;color:var(--navy);font-weight:700;position:relative;padding-left:16px}
+.sec-title h2:before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:5px;background:var(--teal);border-radius:3px}
+.sec-title p{color:var(--muted);font-size:14px}
+.more{font-size:13px;font-weight:600;color:var(--navy);border-bottom:2px solid var(--teal)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,66,135,.12)}
+.card .thumb{height:170px;display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:1px;font-size:14px}
+.card .body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column}
+.card .tag{font-size:11px;font-weight:700;color:var(--teal-d);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.card p{font-size:14px;color:var(--muted);flex:1}
+.card .more{align-self:flex-start;margin-top:14px}
+.t1{background:linear-gradient(135deg,#004287,#2b6cb0)}
+.t2{background:linear-gradient(135deg,#0b5aa8,#66D7D5)}
+.t3{background:linear-gradient(135deg,#1f3a5f,#004287)}
+
+.overview{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.overview p{font-size:15.5px;color:var(--ink);margin-bottom:14px}
+.topics{list-style:none;display:grid;gap:12px}
+.topics li{background:var(--white);border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:10px;padding:14px 18px;font-size:15px;display:flex;gap:12px;align-items:flex-start}
+.topics li .n{font-family:"Montserrat";font-weight:700;color:var(--teal-d);font-size:13px;margin-top:3px;min-width:22px}
+.topics li b{color:var(--navy);display:block;font-size:15px}
+.topics li span{color:var(--muted);font-size:13.5px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.ov-fig{margin:44px 0 0}
+.ov-fig img{width:100%;border-radius:12px}
+.ov-fig figcaption{text-align:center;font-family:"Montserrat","Noto Sans KR",sans-serif;font-size:17px;font-weight:600;color:var(--navy);margin-top:16px;letter-spacing:.2px}
+.stat{text-align:center;padding:22px;border-radius:14px;background:var(--white);border:1px solid var(--line)}
+.stat b{display:block;font-family:"Montserrat";font-size:32px;color:var(--navy)}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* people */
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.person{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.person .av{width:120px;height:160px;border-radius:12px;margin:0 auto 14px;background:linear-gradient(180deg,#dfe7f0,#c9d5e3);display:grid;place-items:center;color:var(--muted);font-size:11px;object-fit:cover;object-position:center top;border:1px solid var(--line)}
+.person b{display:block;color:var(--navy);font-size:16px}
+.person span{font-size:13px;color:var(--muted);display:block}
+.person .since{font-family:"Montserrat";font-size:12px;font-weight:600;color:var(--teal-d);letter-spacing:.3px}
+.person i{font-size:14px;color:var(--navy);font-style:normal;display:block;margin-top:8px;line-height:1.45}
+
+/* publications */
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--white);font-size:14px;cursor:pointer;font-weight:500}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pubs{list-style:none;display:grid;gap:12px}
+.pubs li{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-size:14px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start}
+#projects .pubs li{grid-template-columns:132px 1fr}
+.pubs .yr{font-family:"Montserrat";font-weight:700;color:var(--teal-d);font-size:13px;padding-top:2px}
+.pubs b{color:var(--ink);font-weight:600;display:block}
+.pubs span{color:var(--muted);font-size:13px}
+.pubs strong{font-weight:600;color:var(--navy)}
+.pubs b a:hover{color:var(--navy);text-decoration:underline}
+.pubs li.sub{border-left:4px solid var(--teal)}
+.pub-sub{font-size:14px;font-weight:700;color:var(--navy);margin:22px 0 10px;padding-left:12px;border-left:4px solid var(--teal);list-style:none}
+.pubs .pub-sub{margin:14px 0 2px}
+.pub-sub:first-child{margin-top:0}
+.pane{display:none}.pane.on{display:block}
+
+/* news */
+.news{list-style:none;display:grid;gap:10px}
+.news li{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14px}
+.news .d{font-family:"Montserrat";font-weight:700;color:var(--teal-d);font-size:13px;padding-top:2px}
+.news b{display:block;color:var(--ink);font-weight:600}
+.news span{color:var(--muted);font-size:13px}
+
+/* professor detail */
+.people-prof{max-width:745px;margin:0 auto 22px;box-shadow:0 10px 30px rgba(0,66,135,.08)}
+.prof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.prof-box{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.prof-box h4{font-size:15px;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--teal)}
+.prof-box ul{list-style:none;display:grid;gap:14px}
+.prof-box li{font-size:13.5px;line-height:1.5}
+.prof-box li b{display:block;color:var(--ink);font-weight:700;font-size:14px;margin-bottom:2px}
+.prof-box li span{color:var(--muted);font-size:12.5px;display:block;line-height:1.45}
+.prof-box li .date{font-family:"Montserrat";font-weight:600;color:var(--teal-d);font-size:12px;margin-top:2px}
+.prof-box li .note{margin-top:3px;color:var(--ink)}
+.prof-box li .note em{font-style:normal;font-weight:600;color:var(--navy)}
+.prof-box ol{padding-left:18px;display:grid;gap:7px;font-size:13px}
+.prof-box ol li span{color:var(--muted);font-size:12.5px;display:block}
+
+.sub-h{font-size:15.5px;font-weight:700;color:var(--navy);margin:0 0 12px;padding-left:10px;border-left:4px solid var(--teal);line-height:1.3}
+/* recruiting notice */
+.recruit{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--white);border:1px dashed var(--teal-d);border-radius:14px;padding:20px 24px;margin-bottom:8px}
+.recruit b{display:block;font-size:16px;color:var(--navy);margin-bottom:4px}
+.recruit span{font-size:14px;color:var(--muted);display:block}
+.recruit .btn{margin-top:0;white-space:nowrap}
+@media (max-width:600px){.recruit{flex-direction:column;align-items:flex-start}}
+
+/* alumni */
+.alumni{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.alumni li{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13.5px}
+.alumni li b{color:var(--navy);display:block}
+.alumni li span{color:var(--muted);font-size:12.5px;display:block}
+
+/* join us */
+.join{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:start}
+.join p{font-size:15px;margin-bottom:14px}
+.join h4{font-size:15px;color:var(--navy);margin:16px 0 8px}
+.join ul{padding-left:18px;font-size:14px;display:grid;gap:6px}
+.join ol{padding-left:18px;font-size:14px;display:grid;gap:6px}
+.join .box{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.join .box h4:first-child{margin-top:0}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery figure{margin:0;border-radius:12px;overflow:hidden;background:var(--white);border:1px solid var(--line);position:relative}
+.gallery:not(.open) .more-item{display:none}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:.3s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{padding:9px 12px 10px;font-size:12.5px;color:var(--ink);line-height:1.4}
+.gallery figcaption b{display:block;font-family:"Montserrat";font-size:11.5px;color:var(--teal-d);letter-spacing:.5px}
+
+/* facility & links */
+.links{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.link{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 20px;transition:.2s}
+.link:hover{border-color:var(--teal);box-shadow:0 10px 26px rgba(0,66,135,.1)}
+.link b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.link span{font-size:13px;color:var(--muted)}
+.link .arrow{display:block;margin-top:12px;font-size:12px;color:var(--teal-d);font-weight:700}
+
+/* footer */
+footer{background:var(--navy-d);color:#b9c6d6;font-size:13px;padding:40px 0 28px}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+footer h4{color:#fff;font-size:15px;margin-bottom:10px}
+footer p{margin-bottom:4px}
+footer .social{display:flex;gap:10px;margin-top:12px}
+footer .social a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
+footer .social a:hover{background:var(--teal);color:var(--navy-d)}
+.copy{border-top:1px solid rgba(255,255,255,.1);margin-top:28px;padding-top:16px;text-align:center;font-size:12px;color:#8a9bb0}
+#top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:0;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2);font-size:18px;display:none}
+
+@media (max-width:1100px){nav.main{display:none}.burger{display:block}}
+@media (max-width:960px){
+  .hero .wrap,.overview,footer .wrap{grid-template-columns:1fr}
+  .cards,.people,.links{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .prof-grid,.alumni{grid-template-columns:1fr}.join{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .welcome h1{font-size:30px}.profile .rf li{white-space:normal}
+}
+@media (max-width:600px){
+  .brand .name{display:none}.brand .logo{height:40px}
+  .profile{grid-template-columns:1fr;justify-items:center;text-align:center}.profile .photo{width:150px;height:190px}.profile dl{text-align:left}.plinks{justify-content:center}
+  .cards,.people,.links,.stats{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .pubs li,#projects .pubs li{grid-template-columns:1fr}
+  .news li{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <a href="https://www.jbnu.ac.kr" target="_blank" rel="noopener">전북대학교</a>
+  <a href="https://atom.jbnu.ac.kr/sites/atom/index.do" target="_blank" rel="noopener">양자시스템공학과</a>
+  <a href="#contact">Contact</a>
+</div></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <img class="logo" src="images/relab_logo.png" alt="RELAB — Reactor and Energy Systems Laboratory">
+      <div class="name"><span>전북대학교 양자시스템공학과</span><span>원자로 에너지 시스템 연구실</span></div>
+    </div>
+    <nav class="main"><ul>
+      <li><a href="#people">People</a>
+        <ul class="sub"><li><a href="#professor">Professor</a></li><li><a href="#members">Members</a></li><li><a href="#alumni">Alumni</a></li></ul></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publication">Publication</a>
+        <ul class="sub"><li><a href="#publication" data-tab="journal">Journal</a></li><li><a href="#publication" data-tab="conf">Conference papers</a></li><li><a href="#publication" data-tab="patent">Patent</a></li></ul></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#joinus">Join us</a></li>
+    </ul></nav>
+    <button class="burger" id="burger" aria-label="모바일메뉴 열기">☰ MENU</button>
+  </div>
+  <div class="mobile" id="mobile">
+    <a href="#people">People</a><a class="sub" href="#professor">Professor</a><a class="sub" href="#members">Members</a><a class="sub" href="#alumni">Alumni</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#publication">Publication</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#joinus">Join us</a>
+  </div>
+</header>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero" id="home"><div class="wrap">
+  <div class="profile">
+    <img class="photo" src="images/professor.jpg" alt="Prof. Ji Yong Kim (김지용 교수)">
+    <div>
+      <h2 class="en">Ji Yong Kim, Ph.D.</h2>
+      <div class="ko">김지용 조교수 · Assistant Professor</div>
+      <dl>
+        <dt>Department</dt><dd>Department of Quantum Systems Engineering, Jeonbuk National University</dd>
+        <dt>Research field</dt><dd><ul class="rf">
+          <li>Nuclear Thermal-Hydraulics &amp; Reactor Safety Analysis</li>
+          <li>Boiling Heat Transfer &amp; Critical Heat Flux (CHF)</li>
+          <li>SMR / Advanced Reactor System Analysis</li>
+          <li>Integrated Energy Systems &amp; Load-Following Operation of NPPs</li>
+        </ul></dd>
+        <dt>Lab location</dt><dd>Engineering Bldg. 8, Room 313, Jeonbuk National University<br>전북대학교 공과대학 8호관 313호</dd>
+        <dt>Email</dt><dd><a href="mailto:jykimth@jbnu.ac.kr">jykimth@jbnu.ac.kr</a></dd>
+        <dt>Phone</dt><dd>+82-63-270-4979</dd>
+      </dl>
+      <div class="plinks">
+        <a class="btn" href="#research">More Information</a>
+        <a class="ic" href="https://scholar.google.com/citations?user=0AneC7gAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a class="ic" href="https://www.linkedin.com/in/ji-yong-kim-8aa50121a/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="welcome">
+    <h1><small class="en">WELCOME TO RELAB</small>Reactor and Energy Systems Laboratory</h1>
+    <p>"Advancing nuclear thermal-hydraulics, reactor safety, and integrated energy systems to shape the future of sustainable and safe nuclear energy."</p>
+    <p style="font-size:14.5px">전북대학교 원자로 에너지시스템 연구실(RELAB)은 원자력 열수력, 원자로 안전성 평가, 원자력 통합 에너지 시스템을 연구하여 안전하고 지속 가능한 원자력 에너지의 미래를 선도합니다.</p>
+    <a class="btn ghost" href="#members">Meet our members</a>
+  </div>
+</div></section>
+
+<!-- ---------- INTRO CARDS ---------- -->
+<section class="block"><div class="wrap">
+  <div class="cards">
+    <div class="card"><div class="thumb t1 en">INTRODUCTION</div><div class="body">
+      <div class="tag">Introduction</div><h3>JBNU Reactor and Energy Systems Laboratory (RELAB)</h3>
+      <p>가동 원전 안전성 평가부터 소형모듈원자로(SMR) 및 차세대 원자로의 시스템·열수력 성능 평가까지, 원자력 시스템의 안전성과 효율을 높이는 연구를 수행합니다.</p>
+      <a class="more" href="#research">View More</a></div></div>
+    <div class="card"><div class="thumb t2 en">RESEARCH</div><div class="body">
+      <div class="tag">Research</div><h3>Thermal-Hydraulics · Safety · Energy Systems</h3>
+      <p>비등 열전달과 임계열유속(CHF) 실험, 안전해석코드(MARS-KS, RELAP5, SPACE) 기반 시스템 해석, 통합 에너지 시스템 모델링을 아우릅니다.</p>
+      <a class="more" href="#research">View More</a></div></div>
+    <div class="card"><div class="thumb t3 en">PEOPLE</div><div class="body">
+      <div class="tag">People</div><h3>Members &amp; Collaboration</h3>
+      <p>대학원생과 학부 인턴이 함께 연구하며, 국내외 대학·연구기관과의 공동연구를 통해 차세대 원자력 시스템 연구 역량을 키워 갑니다.</p>
+      <a class="more" href="#people">View More</a></div></div>
+  </div>
+</div></section>
+
+<!-- ---------- NEWS ---------- -->
+<section class="block alt" id="news" style="padding-top:0;background:var(--white)"><div class="wrap">
+  <div class="sec-title"><h2>Recent News</h2><p>최근 소식</p></div>
+  <ul class="news">
+    <li><span class="d">2026.11</span><div><b>Hyeong-seok Lim received the Best Poster Award at the 2026 Korean Nuclear Society Autumn Meeting</b><span>임형석 학생이 2026 원자력학회 추계 학술대회에서 우수 포스터 논문상을 수상했습니다.</span></div></li>
+    <li><span class="d">2026.06</span><div><b>Dong Ho Lee won first place in the Capstone Design Project hosted by the Department of Quantum Systems Engineering</b><span>이동호 학생이 양자시스템공학과 주관 Capstone Design Project에서 1등을 수상했습니다.</span></div></li>
+    <li><span class="d">2026.03</span><div><b>RELAB officially launched at Jeonbuk National University</b><span>RELAB 연구실이 전북대학교에 공식 출범했습니다.</span></div></li>
+  </ul>
+</div></section>
+
+<!-- ---------- OVERVIEW & RESEARCH TOPICS ---------- -->
+<section class="block alt" id="research"><div class="wrap">
+  <div class="sec-title"><h2>Laboratory Overview</h2><a class="more" href="#publication">Publications</a></div>
+  <div class="overview">
+    <div>
+      <p>RELAB은 원자력 시스템의 <b>열수력 현상 규명</b>과 <b>안전성 정량 평가</b>를 핵심 축으로, 실험과 시스템 해석을 결합하여 가동 원전과 차세대 원자로의 성능을 평가합니다.</p>
+      <p>또한 원자력이 재생에너지와 공존할 수 있는 <b>통합 에너지 시스템(Integrated Energy System)</b>을 모델링하고, 재생에너지 변동에 대응하는 <b>원전 탄력운전(Load-Following Operation)</b>의 열수력·안전 영향을 평가하여 전력망 안정성과 원자력의 유연성을 함께 높이는 연구로 영역을 확장하고 있습니다.</p>
+      <p>연구실의 핵심 연구 주제와 진화하는 연구 방향은 아래와 같습니다.</p>
+      <div class="stats">
+        <div class="stat"><b>10</b><span>SCIE Publications</span></div>
+        <div class="stat"><b>4</b><span>Registered Patents</span></div>
+        <div class="stat"><b>6</b><span>Undergraduate Researchers</span></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:20px;color:var(--navy);margin-bottom:14px">Research Topics</h3>
+      <ul class="topics">
+        <li><span class="n">01</span><div><b>Nuclear System Safety Analysis</b><span>가동 원전·SMR·차세대 원자로(HTGR, MSR)의 시스템 열수력 해석 — MARS-KS, RELAP5, SPACE</span></div></li>
+        <li><span class="n">02</span><div><b>Boiling Heat Transfer & Critical Heat Flux</b><span>비등 열전달 메커니즘, CHF 예측 모델, CRUD 및 표면 특성이 열전달에 미치는 영향</span></div></li>
+        <li><span class="n">03</span><div><b>Advanced Reactor Thermal-Hydraulics</b><span>용융염원자로(MSR) 1차원 수력 모델, 해양 원자로, PCSG(Printed Circuit Steam Generator) 열수력 성능</span></div></li>
+        <li><span class="n">04</span><div><b>Integrated Energy Systems &amp; Load-Following Operation</b><span>재생에너지와 공존 가능한 원자력 기반 통합 에너지 시스템 모델링(Modelica) 및 원전 탄력운전 시 시스템 거동·안전성 평가</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <figure class="ov-fig">
+    <img src="images/research_overview.webp" alt="RELAB 연구 개요: 원자력 시스템 열수력 실험 설비, 고충실도 열수력 실험(가시화·광섬유 계측), 원자력 통합에너지시스템 및 SMR 시스템 설계" loading="lazy">
+    <figcaption>Nuclear System Thermal-Hydraulics · High-Fidelity Thermal-Hydraulic Experiments · Nuclear-IES and SMR System Design</figcaption>
+  </figure>
+</div></section>
+
+<!-- ---------- PROJECTS ---------- -->
+<section class="block" id="projects"><div class="wrap">
+  <div class="sec-title"><h2>Projects</h2><p>Ongoing · Past research projects</p></div>
+  <div class="pub-sub">Ongoing Projects</div>
+  <ul class="pubs" style="margin-bottom:8px">
+    <li><span class="yr" style="white-space:nowrap">2026.03 –</span><div><b>Nuclear Safety Pre-Training Education Enhancement Project</b><span>원자력안전 사전실습 교육강화 · Korea Foundation of Nuclear Safety (KoFONS, 한국원자력안전재단)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2026.03 –</span><div><b>Multipurpose Next-Generation Molten Salt Reactor Integrated Human Resource Development Center</b><span>다목적 차세대 용융염원자로 융복합인력 양성센터 · Ministry of Science and ICT (과학기술정보통신부)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2026.04 –</span><div><b>Development of Dynamic Modeling and Key Technologies for Nuclear-based Integrated Energy System</b><span>원자력 통합에너지 시스템 동적 시뮬레이션 및 기반 기술 개발 · 전북대학교 신임교수 연구환경 조성사업</span></div></li>
+  </ul>
+  <div class="pub-sub">Past Projects</div>
+  <ul class="pubs">
+    <li><span class="yr" style="white-space:nowrap">2024.12 – 2026.02</span><div><b>Experimental Study and Computational Modeling of P-LOFC and DLOFC Accident in the Fast Modular Reactor Consisting of Silicon Carbide Composite Rods</b><span>U.S. Department of Energy, DE-NE0009480, NEUP</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2024.12 – 2025.09</span><div><b>Development of High-fidelity Flow Boiling Database for Validation of High-void-fraction Flow Regime Models</b><span>U.S. Department of Energy, DE-NE0009137, NEUP</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2024.05 – 2025.08</span><div><b>Horizontal Compact High Temperature Gas Reactor</b><span>U.S. Department of Energy, DE-NE0009049, ARC-20 / ARDP</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2022.04 – 2023.11</span><div><b>Development of Innovative SMR Innovation Technology</b><span>혁신형 SMR 혁신기술 개발 용역 · Korea Hydro &amp; Nuclear Power Central Research Institute (한국수력원자력)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2023.04 – 2023.12</span><div><b>Start-up Pioneering in Research and Innovation (UNIST)</b><span>실험실 특화형 창업선도대학 · Commercializations Promotion Agency for R&amp;D Outcomes (COMPA, 과학기술사업화진흥원)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2021.08 – 2024.04</span><div><b>Establishment of Carbon Neutral Multi-Purpose Small Modular Reactor Innovation Platform</b><span>탄소 중립형 소형 모듈 원자로(SMR) 혁신플랫폼 개발 연구 · Nuclear Innovation Center for Haeoleum Alliance, KHNP (해오름 동맹 원자력 혁신 센터, 한국수력원자력)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2021.04 – 2024.04</span><div><b>Establishment of CRUD Database for Normal Operation and DBA Conditions</b><span>정상운전 및 설계기준사고 환경 크러드 DB 구축 · Korea Foundation of Nuclear Safety (KoFONS, 한국원자력안전재단)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2021.04 – 2024.02</span><div><b>Nuclear Heat Pipe Technology for Innovative Small Modular Reactors</b><span>Ministry of Science and ICT (과학기술정보통신부)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2019.04 – 2022.12</span><div><b>Development of Key Technologies for Conceptual Design of Non-refueling Full-life Micro Reactor for Marine Applications</b><span>해양용 핵연료-무교체 전수명 초소형 원자로 개념설계 핵심기술 개발 연구 · Ministry of Science and ICT (과학기술정보통신부)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2019.03 – 2021.12</span><div><b>Development of Lead-cooled Fast Reactor Technology</b><span>납냉각 고속로 기술개발 · Ministry of Science and ICT (과학기술정보통신부)</span></div></li>
+    <li><span class="yr" style="white-space:nowrap">2019.03 – 2020.02</span><div><b>Enhancement of Phase Change Heat Transfer with Spatiotemporal Surface Control</b><span>열유출율 기반 시공간적 표면제어를 통한 상변화 열전달 증진 기술 개발 · Ministry of Science and ICT (과학기술정보통신부)</span></div></li>
+  </ul>
+</div></section>
+
+<!-- ---------- PEOPLE ---------- -->
+<section class="block alt" id="people"><div class="wrap">
+  <div class="sec-title"><h2>People</h2><p>Professor · Members · Alumni</p></div>
+  <h3 style="font-size:18px;color:var(--navy);margin:0 0 14px">Principal Investigator · 지도교수</h3>
+  <div class="profile people-prof" id="professor">
+    <img class="photo" src="images/professor.jpg" alt="Prof. Ji Yong Kim (김지용 교수)">
+    <div>
+      <h2 class="en">Ji Yong Kim, Ph.D.</h2>
+      <div class="ko">김지용 조교수 · Assistant Professor</div>
+      <dl>
+        <dt>Department</dt><dd>Department of Quantum Systems Engineering, Jeonbuk National University</dd>
+        <dt>Research field</dt><dd><ul class="rf">
+          <li>Nuclear Thermal-Hydraulics &amp; Reactor Safety Analysis</li>
+          <li>Boiling Heat Transfer &amp; Critical Heat Flux (CHF)</li>
+          <li>SMR / Advanced Reactor System Analysis</li>
+          <li>Integrated Energy Systems &amp; Load-Following Operation of NPPs</li>
+        </ul></dd>
+        <dt>Lab location</dt><dd>Engineering Bldg. 8, Room 313, Jeonbuk National University<br>전북대학교 공과대학 8호관 313호</dd>
+        <dt>Email</dt><dd><a href="mailto:jykimth@jbnu.ac.kr">jykimth@jbnu.ac.kr</a></dd>
+        <dt>Phone</dt><dd>+82-63-270-4979</dd>
+      </dl>
+      <div class="plinks">
+        <a class="btn" href="mailto:jykimth@jbnu.ac.kr">Contact</a>
+        <a class="ic" href="https://scholar.google.com/citations?user=0AneC7gAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a class="ic" href="https://www.linkedin.com/in/ji-yong-kim-8aa50121a/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="prof-grid">
+    <div class="prof-box"><h4>Education</h4><ul>
+      <li><b>Ph.D. in Nuclear Engineering</b>
+        <span>Department of Nuclear Engineering</span>
+        <span>Ulsan National Institute of Science and Technology (UNIST), Korea</span>
+        <span class="date">Feb. 2019 – Feb. 2024</span>
+        <span class="note"><em>Dissertation:</em> Effect of CRUD Deposition on the Sub-cooled Nucleate Boiling Characteristics of Fuel Cladding in Pressurized Water Reactor Operating Condition</span>
+        <span class="note"><em>Advisor:</em> Prof. In Cheol Bang</span></li>
+      <li><b>B.S. in Nuclear and Mechanical Engineering</b>
+        <span>School of Mechanical, Aerospace and Nuclear Engineering</span>
+        <span>Ulsan National Institute of Science and Technology (UNIST), Korea</span>
+        <span class="date">Mar. 2013 – Feb. 2019</span>
+        <span class="note"><em>Summa Cum Laude</em> (Graduation with highest honor)</span></li>
+    </ul></div>
+    <div class="prof-box"><h4>Professional Experience</h4><ul>
+      <li><b>Assistant Professor</b>
+        <span>Department of Quantum Systems Engineering</span>
+        <span>Jeonbuk National University (JBNU), Jeonju, Korea</span>
+        <span class="date">Mar. 2026 – Present</span></li>
+      <li><b>Adjunct Professor</b>
+        <span>Department of Applied Plasma and Quantum Beam Engineering (Graduate School)</span>
+        <span>Jeonbuk National University (JBNU), Jeonju, Korea</span>
+        <span class="date">Apr. 2026 – Present</span></li>
+      <li><b>Post-doctoral Research Fellow</b>
+        <span>Department of Nuclear Engineering and Radiological Sciences (NERS)</span>
+        <span>University of Michigan, Ann Arbor, MI, USA</span>
+        <span class="note"><em>Advisor:</em> Prof. Xiaodong Sun</span>
+        <span class="date">May 2024 – Feb. 2026</span></li>
+      <li><b>Post-doctoral Research Associate</b>
+        <span>Department of Nuclear Engineering</span>
+        <span>Ulsan National Institute of Science and Technology (UNIST), Ulsan, Korea</span>
+        <span class="note"><em>Advisor:</em> Prof. In Cheol Bang</span>
+        <span class="date">Mar. 2024 – Apr. 2024</span></li>
+    </ul></div>
+    <div class="prof-box"><h4>Awards</h4><ol>
+      <li>Excellent Doctoral Thesis Award of 2023<span>Dept. of Nuclear Engineering, UNIST (Feb. 2024)</span></li>
+      <li>Best Paper Award<span>10th Annual Conference of Korean Institute of Hazardous Materials (Aug. 2023)</span></li>
+      <li>Best Paper Award<span>NUTHOS-13, Taichung, Taiwan (Sep. 2022)</span></li>
+      <li>Best Presentation Award<span>2022 KSFM Summer Meeting (Jul. 2022)</span></li>
+      <li>Best Paper Award<span>2022 KSFM Summer Meeting (Jul. 2022)</span></li>
+      <li>Best Paper Award<span>2021 KNS Autumn Meeting (May 2022)</span></li>
+      <li>Scholarship Award<span>2020 KNS Spring Meeting (Jul. 2020)</span></li>
+    </ol></div>
+  </div>
+  <h3 id="members" style="font-size:18px;color:var(--navy);margin:0 0 14px">Members · 구성원</h3>
+  <h4 class="sub-h">Graduate Researchers · 대학원생</h4>
+  <div class="recruit">
+    <div>
+      <b>We are recruiting M.S. and Ph.D. students!</b>
+      <span>원자력 열수력·원자로 안전·통합 에너지 시스템 연구에 함께할 석사·박사과정 대학원생을 모집하고 있습니다. 등록금 전액 지원과 월 연구 장학금을 제공합니다.</span>
+    </div>
+    <a class="btn" href="#joinus">Join us · 지원 안내</a>
+  </div>
+  <h4 class="sub-h" style="margin-top:30px">Undergraduate Researchers · 학부연구생</h4>
+  <div class="people">
+    <div class="person"><img class="av" src="images/members/park_hayoung.jpg" alt="박하영" loading="lazy"><b>박하영</b><span>Undergraduate Researcher</span><span class="since">2026.07 – Present</span><i>System code development (MARS-KS), Load-following operation of NPP (SMR)</i></div>
+    <div class="person"><img class="av" src="images/members/kim_taewoo.jpg" alt="김태우" loading="lazy"><b>김태우</b><span>Undergraduate Researcher</span><span class="since">2026.03 – Present</span><i>MSR system modeling using OpenModelica (Dymola)</i></div>
+    <div class="person"><img class="av" src="images/members/oh_sanghoon.jpg" alt="오상훈" loading="lazy"><b>오상훈</b><span>Undergraduate Researcher</span><span class="since">2026.03 – Present</span><i>SMR system modeling &amp; safety analysis (MARS-KS), Boiling heat transfer &amp; CHF</i></div>
+    <div class="person"><img class="av" src="images/members/yoo_jaewoon.jpg" alt="유재운" loading="lazy"><b>유재운</b><span>Undergraduate Researcher</span><span class="since">2026.03 – Present</span><i>Reactor safety analysis using MARS-KS (MultiD component, CRUD effect)</i></div>
+    <div class="person"><img class="av" src="images/members/lim_hyeongseok.jpg" alt="임형석" loading="lazy"><b>임형석</b><span>Undergraduate Researcher</span><span class="since">2026.03 – Present</span><i>Nuclear-IES modeling using OpenModelica</i></div>
+    <div class="person"><img class="av" src="images/members/moon_minki.jpg" alt="문민기" loading="lazy"><b>문민기</b><span>Undergraduate Researcher</span><span class="since">2026.11 – Present</span><i>Time at temperature</i></div>
+  </div>
+  <h3 id="alumni" style="font-size:18px;color:var(--navy);margin:34px 0 10px">Alumni · 졸업 연구생</h3>
+  <ul class="alumni">
+    <li><b>이동호</b><span>Undergraduate Researcher · 2026.03 – 2026.08</span><span>Current: Dept. of Quantum Systems Engineering, Jeonbuk National University</span></li>
+  </ul>
+</div></section>
+
+<!-- ---------- PUBLICATION ---------- -->
+<section class="block" id="publication"><div class="wrap">
+  <div class="sec-title"><h2>Publication</h2><a class="more" href="https://scholar.google.co.kr/citations?user=0AneC7gAAAAJ&amp;hl=ko" target="_blank" rel="noopener">Google Scholar ↗</a></div>
+  <div class="tabs">
+    <button class="tab on" data-pane="journal">Journal</button>
+    <button class="tab" data-pane="conf">Conference papers</button>
+    <button class="tab" data-pane="patent">Patent</button>
+  </div>
+  <div class="pane on" id="pane-journal"><ul class="pubs">
+    <div class="pub-sub">SCIE Journal Papers</div>
+    <li><span class="yr">2026</span><div><b><a href="https://doi.org/10.1016/j.net.2026.104594" target="_blank" rel="noopener">Design and construction of a scaled mock-up facility for molten salt reactor drain system behavior</a></b><span>Ju Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Nuclear Engineering and Technology</i>, 58(12), 104594 (2026) · DOI</span></div></li>
+    <li><span class="yr">2026</span><div><b><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2025.127977" target="_blank" rel="noopener">Boiling heat transfer characteristics and thermal resistance modeling of corrosion-related unidentified deposit (CRUD) under PWR conditions</a></b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Ji Hyun Kim, In Cheol Bang, <i>International Journal of Heat and Mass Transfer</i>, 256, 127977 (2026) · DOI</span></div></li>
+    <li><span class="yr">2025</span><div><b><a href="https://doi.org/10.1016/j.net.2024.09.039" target="_blank" rel="noopener">Heat pipe type double-containment vessel as passive safety system for small modular reactors</a></b><span>Ju Hun Jung, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Nuclear Engineering and Technology</i>, 57(3), 103236 (2025) · DOI</span></div></li>
+    <li><span class="yr">2024</span><div><b><a href="https://doi.org/10.1016/j.nucengdes.2024.113434" target="_blank" rel="noopener">Flow blockage analysis study for liquid metal fast reactor with two different core configurations including normal and inverted core design</a></b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Nuclear Engineering and Design</i>, 427, 113434 (2024) · DOI</span></div></li>
+    <li><span class="yr">2024</span><div><b><a href="https://doi.org/10.1016/j.net.2023.12.047" target="_blank" rel="noopener">Design and construction of fluid-to-fluid scaled-down small modular reactor platform: As a testbed for the nuclear-based hydrogen production</a></b><span><strong>Ji Yong Kim</strong>, Seung Chang Yoo, Joo Hyung Seo, Ji Hyun Kim, In Cheol Bang, <i>Nuclear Engineering and Technology</i>, 56(3), pp. 1037–1051 (2024) · DOI</span></div></li>
+    <li><span class="yr">2024</span><div><b><a href="https://doi.org/10.1016/j.enconman.2023.118041" target="_blank" rel="noopener">Carbon neutrality strategy with small modular reactor-based hybrid energy system: A case study for a small island and isolated power grid</a></b><span><strong>Ji Yong Kim</strong>, Joo Hyung Seo, In Cheol Bang, <i>Energy Conversion and Management</i>, 301, 118041 (2024) · DOI</span></div></li>
+    <li><span class="yr">2023</span><div><b><a href="https://doi.org/10.1016/j.net.2023.06.006" target="_blank" rel="noopener">The DISNY facility for sub-cooled flow boiling performance analysis of CRUD deposited zirconium alloy cladding under pressurized water reactor condition: Design, construction, and operation</a></b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Ji Hyun Kim, In Cheol Bang, <i>Nuclear Engineering and Technology</i>, 55(9), pp. 3164–3182 (2023) · DOI</span></div></li>
+    <li><span class="yr">2023</span><div><b><a href="https://doi.org/10.1016/j.anucene.2023.110091" target="_blank" rel="noopener">Performance analysis of heat pipe-based passive in-core decay heat removal system for the small modular reactor design with MARS-KS code</a></b><span><strong>Ji Yong Kim</strong>, Ye Yeong Park, In Cheol Bang, <i>Annals of Nuclear Energy</i>, 194, 110091 (2023) · DOI</span></div></li>
+    <li><span class="yr">2020</span><div><b><a href="https://doi.org/10.1016/j.anucene.2019.106971" target="_blank" rel="noopener">Enhanced heat transfer and reduced pressure loss with U-pattern of helical wire spacer arrangement for liquid metal cooled-fast reactor fuel assembly</a></b><span>Yeong Shin Jeong, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Annals of Nuclear Energy</i>, 135, 106971 (2020) · DOI</span></div></li>
+    <li><span class="yr">2019</span><div><b><a href="https://doi.org/10.1063/1.5121918" target="_blank" rel="noopener">CHF enhancement partitioning based on surface wettability and porosity on CeO₂ nanoparticle coated surface</a></b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>AIP Advances</i>, 9(9), 095040 (2019) · DOI</span></div></li>
+    <div class="pub-sub">KCI Journal Papers</div>
+    <li><span class="yr">2023</span><div><b><a href="https://doi.org/10.20466/KPVP.202.19.2.109" target="_blank" rel="noopener">Modelling Heat Transfer Through CRUD Deposited on Cladding Tube in UNIST-DISNY Facility</a></b><span>Seon Oh Yu, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Transactions of the Korean Society of Pressure Vessels and Piping</i>, 19(2), pp. 109–116 (2023) · DOI</span></div></li>
+    <li><span class="yr">2022</span><div><b><a href="https://doi.org/10.5293/kfma.2022.25.5.012" target="_blank" rel="noopener">Establishment of Experimental Facility to Investigate the Sub-cooled Boiling Heat Transfer Characteristics of Fouled Cladding Surface at PWR Conditions</a></b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Junhyuk Ham, Ji Hyun Kim, In Cheol Bang, <i>The KSFM Journal of Fluid Machinery</i>, 25(5), pp. 12–21 (2022) · DOI</span></div></li>
+    <div class="pub-sub">Under Review</div>
+    <li class="sub"><span class="yr">—</span><div><b>Vortex suppression characteristics and drainage performance assessment of an advanced freeze valve for molten salt reactors</b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Progress in Nuclear Energy</i>, under review</span></div></li>
+    <li class="sub"><span class="yr">—</span><div><b>Experimental and numerical investigation of gas-entrainment-induced liquid maldistribution in molten salt reactor drain system</b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Nuclear Engineering and Technology</i>, under review</span></div></li>
+    <li class="sub"><span class="yr">—</span><div><b>Comparative heat transfer between straight- and zigzag-channel printed circuit steam generator for advanced reactors</b><span>Haekyun Park, <strong>Ji Yong Kim</strong>, Xiaodong Sun, <i>Progress in Nuclear Energy</i>, under review</span></div></li>
+  </ul></div>
+  <div class="pane" id="pane-conf"><ul class="pubs">
+    <li><span class="yr">2026</span><div><b>Experimental study and numerical modeling of subcooled and saturated flow boiling at low to intermediate pressure</b><span>Muyue Li, <strong>Ji Yong Kim</strong>, Adam Burak, Hanxing Sun, Yang Liu, Adrian Tentner, Yixing Sung, Annalisa Manera, Xiaodong Sun, <i>ASME 2026 Heat Transfer Summer Conference (SHTC2026), Bellevue, WA, USA (Jul. 2026)</i></span></div></li>
+    <li><span class="yr">2025</span><div><b>Experimental investigation of a compact diffusion bonded steam generator for high-temperature gas reactors</b><span><strong>Ji Yong Kim</strong>, Haekyun Park, Xiaodong Sun, <i>21st International Topical Meeting on Nuclear Reactor Thermal Hydraulics (NURETH-21), Busan, Korea (Sep. 2025)</i></span></div></li>
+    <li><span class="yr">2025</span><div><b>Measurement of void fraction and wall heat transfer coefficient in the sub-cooled and nucleate boiling regime in steam–water two-phase flow</b><span>Muyue Li, <strong>Ji Yong Kim</strong>, Xiaodong Sun, Hanxing Sun, Yang Liu, <i>NURETH-21, Busan, Korea (Sep. 2025)</i></span></div></li>
+    <li><span class="yr">2025</span><div><b>Two-phase flow instability in a zigzag minichannel steam generator under HTGR operating conditions</b><span><strong>Ji Yong Kim</strong>, Haekyun Park, Xiaodong Sun, <i>2025 Japan–US Seminar on Two-Phase Flow Dynamics (JP-US STPFD 2025), Tokyo, Japan (Jun. 2025)</i></span></div></li>
+    <li><span class="yr">2025</span><div><b>Experimental investigation of flow boiling characteristics in zigzag minichannel of a printed circuit steam generator</b><span><strong>Ji Yong Kim</strong>, Haekyun Park, Xiaodong Sun, <i>12th International Conference on Multiphase Flow (ICMF 2025), Toulouse, France (May 2025)</i></span></div></li>
+    <li><span class="yr">2024</span><div><b>Preliminary experiments of printed circuit steam generator for modular integrated gas-cooled high temperature reactor</b><span>Haekyun Park, <strong>Ji Yong Kim</strong>, Xiaodong Sun, <i>13th Korea–Japan Symposium on Nuclear Thermal Hydraulics and Safety (NTHAS13), Seoul, Korea (Nov. 2024)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Experimental investigation of the fouling characteristics of the CRUD on pressurized water reactor operating conditions</b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Byeongju Kim, Ji Hyun Kim, In Cheol Bang, <i>KNS 2023 Autumn Meeting, Gyeongju, Korea (Oct. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Feasibility analysis study of the DISNY facility as a test bed for CRUD-related experiment under pressurized water reactor operating condition</b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Ju Hun Jung, Ji Hyun Kim, In Cheol Bang, <i>NURETH-20, Washington, D.C., USA (Aug. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Analysis of flow blockage for the fuel assembly in lead-cooled fast reactor and comparison of analysis according to the changed assembly design</b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>NURETH-20, Washington, D.C., USA (Aug. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Instability at the interface between hot/cold fluids in the density lock using numerical analysis for inherently safe reactor</b><span>Ju Hun Jung, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>NURETH-20, Washington, D.C., USA (Aug. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Simulation of the CRUD effect in subcooled nucleate boiling area in the subchannels of the 7×7 nuclear fuel assembly</b><span>Hyeon Ji Kim, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>NURETH-20, Washington, D.C., USA (Aug. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Performance analysis of DISNY facility: a CRUD deposition simulator under PWR operating condition</b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Ju Hun Jung, Ji Hyun Kim, In Cheol Bang, <i>Transactions of ANS 2023 Annual Meeting, Indianapolis, IN, USA (Jun. 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Modeling the CRUD effects on heat transfer in subchannels of pressurized water reactor</b><span>Hyeon Ji Kim, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2023 Spring Meeting, Jeju, Korea (May 2023)</i></span></div></li>
+    <li><span class="yr">2023</span><div><b>Design and construction of fluid-to-fluid scaled-down small modular reactor platform: As a testbed for the nuclear-based hydrogen production</b><span><strong>Ji Yong Kim</strong>, Seung Chang Yoo, Joo Hyung Seo, Ji Hyun Kim, In Cheol Bang, <i>International Congress on Advances in Nuclear Power Plants (ICAPP 2023), Gyeongju, Korea (Apr. 2023)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Design study of fluid-to-fluid scaled-down SMR innovation platform for application and evaluation of elementary technology</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KSFM 2022 Winter Meeting, Jeju, Korea (Nov. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>CFD analysis of subcooled boiling phenomena in the crud DeposItion Simulator for Nuclear energY (DISNY)</b><span>Hyeon Ji Kim, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2022 Autumn Meeting, Changwon, Korea (Oct. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Investigation of pool boiling heat transfer characteristics of CRUD deposited zirconium alloy cladding</b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Ji Hyun Kim, In Cheol Bang, <i>12th Japan–Korea Symposium on Nuclear Thermal Hydraulics and Safety (NTHAS12), Miyazaki, Japan (Oct. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>CFD analysis of flow characteristics in experimental loop for CRUD deposition</b><span>Hyeon Ji Kim, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>NTHAS12, Miyazaki, Japan (Nov. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Flow blockage analysis of the fuel assembly in a conceptual micro-marine liquid metal-cooled fast reactor</b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>13th International Topical Meeting on Nuclear Reactor Thermal-Hydraulics, Operation and Safety (NUTHOS-13), Taichung, Taiwan (Sep. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Establishment of experimental facility to investigate the sub-cooled boiling heat transfer characteristics of fouled cladding surface at PWR conditions</b><span><strong>Ji Yong Kim</strong>, Yunju Lee, Junhyuk Ham, Ji Hyun Kim, In Cheol Bang, <i>KSFM 2022 Summer Meeting, Gangwon, Korea (Jun. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Design study of CRUD thermal properties characterization facility DISNY under pressurized water reactor normal operating condition</b><span><strong>Ji Yong Kim</strong>, Hyeon Ji Kim, In Cheol Bang, <i>Advances in Thermal Hydraulics (ATH 2022), Anaheim, CA, USA (Jun. 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Investigation of the heat removal capability of the hybrid control rod in natural circulation-type SMR under station black out accident with MARS-KS code</b><span><strong>Ji Yong Kim</strong>, Ye Yeong Park, In Cheol Bang, <i>KNS 2022 Spring Meeting, Jeju, Korea (May 2022)</i></span></div></li>
+    <li><span class="yr">2022</span><div><b>Core design of 100MWe advanced nitride-fueled simplified liquid metal cooled fast reactor</b><span>Tung Dong Cao Nguyen, <strong>Ji Yong Kim</strong>, Jiwon Choe, In Cheol Bang, Deokjung Lee, <i>International Conference on Fast Reactors and Related Fuel Cycles (FR22), Vienna, Austria (Apr. 2022)</i></span></div></li>
+    <li><span class="yr">2021</span><div><b>Preliminary safety analysis results of lead cooled fast reactor: MicroURANUS under unprotected loss of flow condition</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Transactions of the 2021 ANS Annual Meeting, Virtual, USA (Jun. 2021)</i></span></div></li>
+    <li><span class="yr">2021</span><div><b>ULOF and UTOP analyses of a conceptual small liquid metal-cooled fast reactor</b><span>Joo Hyung Seo, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2021 Autumn Meeting, Virtual, Korea (Oct. 2021)</i></span></div></li>
+    <li><span class="yr">2021</span><div><b>Subcooled flow boiling analysis of acoustic signal behavior</b><span>Do Yeong Lim, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2021 Autumn Meeting, Virtual, Korea (Oct. 2021)</i></span></div></li>
+    <li><span class="yr">2021</span><div><b>Investigation of R-123 pool boiling performance of anodic aluminum oxide membrane based nano porous heater assembly</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2021 Spring Meeting, Virtual, Korea (May 2021)</i></span></div></li>
+    <li><span class="yr">2021</span><div><b>Preliminary study on the boiling heat transfer performance of R123 refrigerant with nano-porous aluminum oxide membrane</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>20th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm 2021), Virtual, USA (Jun. 2021)</i></span></div></li>
+    <li><span class="yr">2020</span><div><b>Preliminary safety analysis results of lead cooled fast reactor design using MARS code</b><span><strong>Ji Yong Kim</strong>, Tung Dong Cao Nguyen, Deokjung Lee, In Cheol Bang, <i>KNS 2020 Autumn Meeting, Virtual, Korea (Dec. 2020)</i></span></div></li>
+    <li><span class="yr">2020</span><div><b>Effect of CVD deposited graphene monolayer thermal effusivity on phase change heat transfer in 2-D plate condition with highly wettable FC-72</b><span><strong>Ji Yong Kim</strong>, Kyung Mo Kim, In Cheol Bang, <i>19th IEEE ITherm 2020, Virtual, USA (Jul. 2020)</i></span></div></li>
+    <li><span class="yr">2019</span><div><b>Effect of 2-D plane graphene thermal effusivity on boiling heat transfer with highly wettable FC-72</b><span><strong>Ji Yong Kim</strong>, Kyung Mo Kim, In Cheol Bang, <i>KNS 2019 Autumn Meeting, Goyang, Korea (Oct. 2019)</i></span></div></li>
+    <li><span class="yr">2019</span><div><b>Boiling heat transfer enhancement with extremely high thermal effusivity of phase change material</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>NURETH-18, Portland, OR, USA (Aug. 2019)</i></span></div></li>
+    <li><span class="yr">2019</span><div><b>Effect of thermal effusivity on nanoparticle deposited surface CHF</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>Transactions of ANS 2019 Annual Meeting, Minneapolis, MN, USA (Jun. 2019)</i></span></div></li>
+    <li><span class="yr">2019</span><div><b>Pool boiling critical heat flux behavior of cerium dioxide nanofluid under various volume concentration condition</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>27th International Conference on Nuclear Engineering (ICONE 27), Tsukuba, Japan (May 2019)</i></span></div></li>
+    <li><span class="yr">2018</span><div><b>Pool boiling heat transfer performance of cerium oxide nano-fluid</b><span><strong>Ji Yong Kim</strong>, Do Yeong Lim, In Cheol Bang, <i>2018 KSME Winter Meeting, Gangwon, Korea (Dec. 2018)</i></span></div></li>
+    <li><span class="yr">2018</span><div><b>Characteristics on boiling critical heat flux of cerium oxide dispersion for nanofluid homogeneous reactor</b><span><strong>Ji Yong Kim</strong>, Yeong Shin Jeong, In Cheol Bang, <i>11th Korea–Japan Symposium on Nuclear Thermal Hydraulics and Safety (NTHAS-11), Busan, Korea (Nov. 2018)</i></span></div></li>
+    <li><span class="yr">2018</span><div><b>Study on the CHF for cerium oxide nanofluid under various volume concentration conditions</b><span><strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2018 Autumn Meeting, Yeosu, Korea (Oct. 2018)</i></span></div></li>
+    <li><span class="yr">2017</span><div><b>Safety analysis of one pump seizure accident for 2017 PGSFR related to effect of pump seizure time and loss of off-site power</b><span><strong>Ji Yong Kim</strong>, Jae-Ho Jeong, Chi-Woong Choi, Tae-Kyeong Jeong, San-Jun Ahn, Kwi-Lim Lee, <i>KNS 2017 Autumn Meeting, Gyeongju, Korea (Oct. 2017)</i></span></div></li>
+    <li><span class="yr">2017</span><div><b>Measurements of enhanced mixing with U-pattern wire wrap spacer in 19-pin rod bundle using particle image velocimetry</b><span>Yeong Shin Jeong, <strong>Ji Yong Kim</strong>, In Cheol Bang, <i>KNS 2017 Spring Meeting, Jeju, Korea (May 2017)</i></span></div></li>
+  </ul></div>
+  <div class="pane" id="pane-patent"><ul class="pubs">
+    <li><span class="yr">2025</span><div><b>Small modular nuclear reactor having heat pipe type double container (히트파이프형 이중 격납용기를 포함하는 소형 모듈 원자로)</b><span>In Cheol Bang, Dong Hun Lee, <strong>Ji Yong Kim</strong>, KR Registered No. 10-2844971 (2025)</span></div></li>
+    <li><span class="yr">2025</span><div><b>Apparatus for controlling nuclear reactor equipped with the heat pipe and internal boric acid tank (히트파이프 및 내장형 붕산탱크가 구비된 원자로제어장치)</b><span>In Cheol Bang, <strong>Ji Yong Kim</strong>, KR Registered No. 10-2806998 (2025)</span></div></li>
+    <li><span class="yr">2025</span><div><b>Small modular reactor including the passive safety system (피동 안전 계통을 구비한 소형 모듈 원자로)</b><span>In Cheol Bang, <strong>Ji Yong Kim</strong>, KR Registered No. 10-2583804 (2025)</span></div></li>
+    <li><span class="yr">2025</span><div><b>Experimental facility for analyzing performance of pressurized water reactor fuel cladding (가압 경수형 원자력 발전소 핵연료 피복관 성능 평가 실험장치)</b><span>In Cheol Bang, Ji Hyun Kim, <strong>Ji Yong Kim</strong>, Yunju Lee, KR Registered No. 10-2859271 (2025)</span></div></li>
+  </ul></div>
+</div></section>
+
+<!-- ---------- GALLERY ---------- -->
+<section class="block alt" id="gallery"><div class="wrap">
+  <div class="sec-title"><h2>Gallery</h2><p>세미나 · 워크숍 · 연구실 행사</p></div>
+  <div class="gallery">
+    <figure><img src="images/gallery/2026-11-03_award.jpg" alt="2026.11.03 임형석 학생 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상" loading="lazy"><figcaption><b>2026.11.03</b>임형석 학생, 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상 🎉</figcaption></figure>
+    <figure><img src="images/gallery/2026-11-04.jpg" alt="2026.11.04 서울대학교 조형규 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.11.04</b>서울대학교 조형규 교수님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-10-20.jpg" alt="2026.10.20 UNIST 방인철 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.20</b>UNIST 방인철 교수님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-10-13.jpg" alt="2026.10.13 서울대학교 김진우 박사님 초청 세미나" loading="lazy"><figcaption><b>2026.10.13</b>서울대학교 김진우 박사님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-10-12.jpg" alt="2026.10.12 국립창원대학교 배준용 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.12</b>국립창원대학교 배준용 교수님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-10-06.jpg" alt="2026.10.06 서울대학교 이유호 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.06</b>서울대학교 이유호 교수님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-09-29.jpg" alt="2026.09.29 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.29</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
+    <figure><img src="images/gallery/2026-09-22.jpg" alt="2026.09.22 KAIST 성지현 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.22</b>KAIST 성지현 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-09-15.jpg" alt="2026.09.15 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.15</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-09-10.jpg" alt="2026.09.10 서울대학교 김응수 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.10</b>서울대학교 김응수 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-09-08.jpg" alt="2026.09.08 경희대학교 조영범 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.08</b>경희대학교 조영범 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-08-14.jpg" alt="2026.08.14 UNIST-KENTECH-JBNU Joint Workshop" loading="lazy"><figcaption><b>2026.08.14</b>UNIST-KENTECH-JBNU Joint Workshop</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-07-31.jpg" alt="2026.07.31 경희대학교 김형대 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.31</b>경희대학교 김형대 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-07-30.jpg" alt="2026.07.30 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.30</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-07-27.jpg" alt="2026.07.27 연구실 단체 회식" loading="lazy"><figcaption><b>2026.07.27</b>연구실 단체 회식</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-07-14.jpg" alt="2026.07.14 경희대학교 선진원자로 하계 단기강좌" loading="lazy"><figcaption><b>2026.07.14</b>경희대학교 선진원자로 하계 단기강좌</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-06-19.jpg" alt="2026.06.19 원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)" loading="lazy"><figcaption><b>2026.06.19</b>원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-06-18.jpg" alt="2026.06.18 경상국립대 김형모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.18</b>경상국립대 김형모 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-06-11.jpg" alt="2026.06.11 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.11</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-06-10.jpg" alt="2026.06.10 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.10</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-05-15.jpg" alt="2026.05.15 스승의날 행사" loading="lazy"><figcaption><b>2026.05.15</b>스승의날 행사</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-04-23.jpg" alt="2026.04.23 KAERI 서한박사님 세미나" loading="lazy"><figcaption><b>2026.04.23</b>KAERI 서한박사님 세미나</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-04-15.jpg" alt="2026.04.15 연구실 단체 사진" loading="lazy"><figcaption><b>2026.04.15</b>연구실 단체 사진</figcaption></figure>
+    <figure class="more-item"><img src="images/gallery/2026-04-09.jpg" alt="2026.04.09 연구실 첫 회식" loading="lazy"><figcaption><b>2026.04.09</b>연구실 첫 회식</figcaption></figure>
+  </div>
+  <div style="text-align:center;margin-top:26px"><button class="btn" id="gal-more" type="button">View all photos (전체 보기)</button></div>
+</div></section>
+
+<!-- ---------- JOIN US ---------- -->
+<section class="block" id="joinus"><div class="wrap">
+  <div class="sec-title"><h2>Join us</h2><p>대학원생(석사·박사) 모집</p></div>
+  <div class="join">
+    <div>
+      <p>The Reactor and Energy Systems Laboratory (RELAB) at Jeonbuk National University is actively seeking motivated <b>M.S. and Ph.D. students</b> who are passionate about nuclear thermal-hydraulics, reactor safety, and integrated energy system research.</p>
+      <p>전북대학교 원자로 에너지시스템 연구실(RELAB)에서 원자력 열수력, 원자로 안전, 원자력 통합 에너지 시스템 연구에 열정적인 <b>석사·박사과정 대학원생</b>을 모집합니다.</p>
+      <h4>Research Areas · 연구 분야</h4>
+      <ul>
+        <li>Boiling heat transfer and CHF experiments/modeling · 비등 열전달 및 CHF 실험/모델링</li>
+        <li>Advanced reactor thermal-hydraulic analysis · 차세대 원자로 열수력 해석</li>
+        <li>Nuclear integrated energy system modeling · 원자력 통합에너지시스템 모델링</li>
+        <li>Load-following operation of nuclear power plants · 원전 탄력운전 해석</li>
+      </ul>
+      <h4>What We Offer · 지원 사항</h4>
+      <ul>
+        <li>등록금 전액 지원 및 월 연구 장학금 (국가연구과제 등)</li>
+        <li>국내외 학술대회 참가 및 공동연구 기회 제공</li>
+        <li>최첨단 실험 시설 활용</li>
+        <li>체계적 연구 지도 및 협력적 연구 환경</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Desired Qualifications · 지원 자격</h4>
+      <ul>
+        <li>양자시스템공학, 원자력공학, 기계공학 또는 관련 분야 학사/석사 학위 (취득 예정자 포함)</li>
+        <li>실험 또는 전산 연구에 대한 열정</li>
+        <li>프로그래밍 기초 능력 (Python, MATLAB 등) 우대</li>
+      </ul>
+      <h4>How to Apply · 지원 방법</h4>
+      <p style="font-size:14px">아래 서류를 <a href="mailto:jykimth@jbnu.ac.kr" style="color:var(--navy);font-weight:600">jykimth@jbnu.ac.kr</a>로 보내 주세요.</p>
+      <ol>
+        <li><b>CV / Resume</b> · 이력서 (자유 양식)</li>
+        <li><b>Transcript</b> · 성적증명서 (비공식 가능)</li>
+        <li><b>Statement of research interest</b> (1 page) · 연구 관심 분야 소개 (A4 1매 내외)</li>
+      </ol>
+      <a class="btn" href="mailto:jykimth@jbnu.ac.kr?subject=[RELAB] 대학원 지원 문의">Contact by Email</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ---------- FOOTER ---------- -->
+<footer id="contact"><div class="wrap">
+  <div>
+    <h4 class="en">RELAB · Reactor and Energy Systems Laboratory</h4>
+    <p>김지용 (양자시스템공학과) · Department of Quantum Systems Engineering</p>
+    <p>전북특별자치도 전주시 덕진구 백제대로 567 전북대학교 (우) 54896</p>
+    <div class="social">
+      <a href="#" title="Facebook">f</a><a href="#" title="LinkedIn">in</a><a href="#" title="X">X</a><a href="#" title="YouTube">▶</a>
+    </div>
+  </div>
+  <div><h4>Contact</h4><p>Tel: +82-63-270-4979</p><p>Email: <a href="mailto:jykimth@jbnu.ac.kr">jykimth@jbnu.ac.kr</a></p><p>Office: 공과대학 8호관 313호 (Engineering Bldg. 8, Room 313)</p></div>
+  <div><h4>Quick Menu</h4><p><a href="#people">People</a></p><p><a href="#research">Research</a></p><p><a href="#projects">Projects</a></p><p><a href="#publication">Publication</a></p><p><a href="#gallery">Gallery</a></p><p><a href="#joinus">Join us</a></p></div>
+</div>
+<div class="copy">COPYRIGHT 2026 김지용 (양자시스템공학과) ALL RIGHTS RESERVED.</div>
+</footer>
+
+<button id="top" aria-label="pagetop">↑</button>
+
+<script>
+// mobile menu
+const burger=document.getElementById('burger'),mobile=document.getElementById('mobile');
+burger.addEventListener('click',()=>{mobile.classList.toggle('open');burger.setAttribute('aria-label',mobile.classList.contains('open')?'모바일 메뉴 닫기':'모바일메뉴 열기');});
+mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
+// publication tabs
+function showPane(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.pane===id));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+id));}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showPane(t.dataset.pane)));
+document.querySelectorAll('[data-tab]').forEach(a=>a.addEventListener('click',()=>showPane(a.dataset.tab)));
+// gallery: show all
+const galMore=document.getElementById('gal-more');
+if(galMore){galMore.addEventListener('click',()=>{const g=document.querySelector('.gallery');g.classList.toggle('open');galMore.textContent=g.classList.contains('open')?'Show less (접기)':'View all photos (전체 보기)';});}
+// active nav & page top
+const topBtn=document.getElementById('top');
+const secs=[...document.querySelectorAll('section[id]')];
+const navLinks=[...document.querySelectorAll('nav.main>ul>li')];
+window.addEventListener('scroll',()=>{
+  topBtn.style.display=window.scrollY>400?'block':'none';
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  navLinks.forEach(li=>{const a=li.querySelector('a');li.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
