@@ -43,12 +43,13 @@ git push
 - 교수 사진: `<div class="photo">…</div>`를 `<img class="photo" src="images/professor.jpg" alt="Prof. Ji Yong Kim">`로 교체.
 
 ### 3.4 갤러리 사진
-`id="gallery"`의 `<div class="gallery">` 안에 아래 형식의 `<figure>`를 **맨 앞**에 추가합니다(최신순). 사진은 `images/gallery/`에 긴 변 1200px 정도로 줄여 넣습니다.
+`id="gallery"`의 `<div class="gallery">` 안에 아래 형식의 `<figure>`를 **날짜 내림차순 위치**에 추가합니다. 사진은 `images/gallery/`에 `YYYY-MM-DD.jpg` 이름으로 긴 변 1200px 정도로 줄여 넣습니다.
 
 ```html
-<figure><img src="images/gallery/2026-12_event.jpg" alt="설명" loading="lazy"><figcaption><b>2026.12</b>행사 이름</figcaption></figure>
+<figure data-year="2027"><img src="images/gallery/2027-03-02.jpg" alt="설명" loading="lazy"><figcaption><b>2027.03.02</b>행사 이름</figcaption></figure>
 ```
-(CSS가 `aspect-ratio: 4/3`로 잘라 보여 주므로 비율이 달라도 괜찮습니다. 8장 넘게 넣어도 됩니다.)
+- `data-year`는 연도 탭을 만드는 데 쓰입니다. 새 연도의 사진을 넣으면 탭이 자동으로 생깁니다.
+- 연도별로 처음 9장만 보이고 "View all" 버튼으로 나머지를 펼칩니다. (CSS가 `aspect-ratio: 4/3`로 잘라 보여 주므로 비율이 달라도 괜찮습니다.)
 
 ### 3.5 Research Topics 수정
 `id="research"` 섹션의 `<ul class="topics">` 항목을 수정합니다. 번호(`<span class="n">01</span>`)는 순서대로 유지합니다.

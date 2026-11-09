@@ -16,7 +16,7 @@ README.md    # 운영자/학생용 수정 가이드
 images/      # relab_logo.png(헤더 로고), professor.jpg(교수 사진), members/*.jpg(구성원 증명사진, 600px)
              # research_overview.webp (Overview 하단 연구 개요 그림, 1800px, 흰 배경을 투명 처리, 사용자 제공)
              # gallery/*.jpg (노션 Gallery 23개 행사 + 수상 사진 + 2026-10-02 덕진공원 단체사진 = 25장, 행사당 1장, 긴 변 1200px, 파일명 YYYY-MM-DD.jpg, 날짜 내림차순 정렬)
-             # Gallery는 최신 8장만 보이고 "View all photos" 버튼(#gal-more)으로 .more-item을 펼침
+             # Gallery: figure의 data-year로 연도 탭(#gal-tabs)을 JS가 자동 생성, 연도별 처음 9장만 표시하고 #gal-more 버튼으로 펼침. 데스크톱 3열·태블릿 2열·모바일 1열
              # 원본: Dropbox 05. RELAB/연구실 로고, 05. RELAB/서명 및 사진/{교수 증명사진, 학생 증명사진}
 qr/          # 홈페이지 QR (relab_qr.png 기본, relab_qr_logo.png 로고 삽입, relab_qr.svg 벡터, relab_qr_card.png 포스터용). 생성: python qrcode+zxing-cpp, 오류정정 H, 남색 #004287
 data/        # (예정) members.json, publications.json 등 데이터 분리 시 사용

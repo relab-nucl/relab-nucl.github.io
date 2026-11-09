@@ -184,12 +184,12 @@ section.block.alt{background:var(--bg)}
 .join .box h4:first-child{margin-top:0}
 
 /* gallery */
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .gallery figure{margin:0;border-radius:12px;overflow:hidden;background:var(--white);border:1px solid var(--line);position:relative}
-.gallery:not(.open) .more-item{display:none}
+.gallery figure[hidden],#gal-more[hidden]{display:none}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:.3s}
 .gallery figure:hover img{transform:scale(1.04)}
-.gallery figcaption{padding:9px 12px 10px;font-size:12.5px;color:var(--ink);line-height:1.4}
+.gallery figcaption{padding:10px 14px 12px;font-size:13.5px;color:var(--ink);line-height:1.45}
 .gallery figcaption b{display:block;font-family:"Montserrat";font-size:11.5px;color:var(--teal-d);letter-spacing:.5px}
 
 /* facility & links */
@@ -217,14 +217,14 @@ footer .social a:hover{background:var(--teal);color:var(--navy-d)}
   .cards,.people,.links{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:repeat(3,1fr)}
   .prof-grid,.alumni{grid-template-columns:1fr}.join{grid-template-columns:1fr}
-  .gallery{grid-template-columns:repeat(3,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
   .welcome h1{font-size:30px}.profile .rf li{white-space:normal}
 }
 @media (max-width:600px){
   .brand .name{display:none}.brand .logo{height:40px}
   .profile{grid-template-columns:1fr;justify-items:center;text-align:center}.profile .photo{width:150px;height:190px}.profile dl{text-align:left}.plinks{justify-content:center}
   .cards,.people,.links,.stats{grid-template-columns:1fr}
-  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:1fr}
   .pubs li,#projects .pubs li{grid-template-columns:1fr}
   .news li{grid-template-columns:1fr;gap:4px}
 }
@@ -561,34 +561,35 @@ footer .social a:hover{background:var(--teal);color:var(--navy-d)}
 <!-- ---------- GALLERY ---------- -->
 <section class="block alt" id="gallery"><div class="wrap">
   <div class="sec-title"><h2>Gallery</h2><p>세미나 · 워크숍 · 연구실 행사</p></div>
+  <div class="tabs" id="gal-tabs" aria-label="연도 선택"></div>
   <div class="gallery">
-    <figure><img src="images/gallery/2026-11-04.jpg" alt="2026.11.04 서울대학교 조형규 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.11.04</b>서울대학교 조형규 교수님 초청 세미나</figcaption></figure>
-    <figure><img src="images/gallery/2026-11-03_award.jpg" alt="2026.11.03 임형석 학생 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상" loading="lazy"><figcaption><b>2026.11.03</b>임형석 학생, 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상 🎉</figcaption></figure>
-    <figure><img src="images/gallery/2026-10-20.jpg" alt="2026.10.20 UNIST 방인철 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.20</b>UNIST 방인철 교수님 초청 세미나</figcaption></figure>
-    <figure><img src="images/gallery/2026-10-13.jpg" alt="2026.10.13 서울대학교 김진우 박사님 초청 세미나" loading="lazy"><figcaption><b>2026.10.13</b>서울대학교 김진우 박사님 초청 세미나</figcaption></figure>
-    <figure><img src="images/gallery/2026-10-12.jpg" alt="2026.10.12 국립창원대학교 배준용 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.12</b>국립창원대학교 배준용 교수님 초청 세미나</figcaption></figure>
-    <figure><img src="images/gallery/2026-10-06.jpg" alt="2026.10.06 서울대학교 이유호 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.06</b>서울대학교 이유호 교수님 초청 세미나</figcaption></figure>
-    <figure><img src="images/gallery/2026-10-02.jpg" alt="2026.10.02 연구실 단체 사진 (덕진공원)" loading="lazy"><figcaption><b>2026.10.02</b>연구실 단체 사진 (덕진공원)</figcaption></figure>
-    <figure><img src="images/gallery/2026-09-29.jpg" alt="2026.09.29 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.29</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-09-22.jpg" alt="2026.09.22 KAIST 성지현 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.22</b>KAIST 성지현 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-09-15.jpg" alt="2026.09.15 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.15</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-09-10.jpg" alt="2026.09.10 서울대학교 김응수 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.10</b>서울대학교 김응수 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-09-08.jpg" alt="2026.09.08 경희대학교 조영범 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.08</b>경희대학교 조영범 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-08-14.jpg" alt="2026.08.14 UNIST-KENTECH-JBNU Joint Workshop" loading="lazy"><figcaption><b>2026.08.14</b>UNIST-KENTECH-JBNU Joint Workshop</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-07-31.jpg" alt="2026.07.31 경희대학교 김형대 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.31</b>경희대학교 김형대 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-07-30.jpg" alt="2026.07.30 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.30</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-07-27.jpg" alt="2026.07.27 연구실 단체 회식" loading="lazy"><figcaption><b>2026.07.27</b>연구실 단체 회식</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-07-14.jpg" alt="2026.07.14 경희대학교 선진원자로 하계 단기강좌" loading="lazy"><figcaption><b>2026.07.14</b>경희대학교 선진원자로 하계 단기강좌</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-06-19.jpg" alt="2026.06.19 원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)" loading="lazy"><figcaption><b>2026.06.19</b>원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-06-18.jpg" alt="2026.06.18 경상국립대 김형모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.18</b>경상국립대 김형모 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-06-11.jpg" alt="2026.06.11 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.11</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-06-10.jpg" alt="2026.06.10 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.10</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-05-15.jpg" alt="2026.05.15 스승의날 행사" loading="lazy"><figcaption><b>2026.05.15</b>스승의날 행사</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-04-23.jpg" alt="2026.04.23 KAERI 서한박사님 세미나" loading="lazy"><figcaption><b>2026.04.23</b>KAERI 서한박사님 세미나</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-04-15.jpg" alt="2026.04.15 연구실 단체 사진" loading="lazy"><figcaption><b>2026.04.15</b>연구실 단체 사진</figcaption></figure>
-    <figure class="more-item"><img src="images/gallery/2026-04-09.jpg" alt="2026.04.09 연구실 첫 회식" loading="lazy"><figcaption><b>2026.04.09</b>연구실 첫 회식</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-11-04.jpg" alt="2026.11.04 서울대학교 조형규 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.11.04</b>서울대학교 조형규 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-11-03_award.jpg" alt="2026.11.03 임형석 학생 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상" loading="lazy"><figcaption><b>2026.11.03</b>임형석 학생, 2026 한국원자력학회 추계학술대회 우수 포스터 논문상 수상 🎉</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-10-20.jpg" alt="2026.10.20 UNIST 방인철 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.20</b>UNIST 방인철 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-10-13.jpg" alt="2026.10.13 서울대학교 김진우 박사님 초청 세미나" loading="lazy"><figcaption><b>2026.10.13</b>서울대학교 김진우 박사님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-10-12.jpg" alt="2026.10.12 국립창원대학교 배준용 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.12</b>국립창원대학교 배준용 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-10-06.jpg" alt="2026.10.06 서울대학교 이유호 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.10.06</b>서울대학교 이유호 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-10-02.jpg" alt="2026.10.02 연구실 단체 사진 (덕진공원)" loading="lazy"><figcaption><b>2026.10.02</b>연구실 단체 사진 (덕진공원)</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-09-29.jpg" alt="2026.09.29 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.29</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-09-22.jpg" alt="2026.09.22 KAIST 성지현 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.22</b>KAIST 성지현 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-09-15.jpg" alt="2026.09.15 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.15</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-09-10.jpg" alt="2026.09.10 서울대학교 김응수 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.10</b>서울대학교 김응수 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-09-08.jpg" alt="2026.09.08 경희대학교 조영범 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.09.08</b>경희대학교 조영범 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-08-14.jpg" alt="2026.08.14 UNIST-KENTECH-JBNU Joint Workshop" loading="lazy"><figcaption><b>2026.08.14</b>UNIST-KENTECH-JBNU Joint Workshop</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-07-31.jpg" alt="2026.07.31 경희대학교 김형대 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.31</b>경희대학교 김형대 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-07-30.jpg" alt="2026.07.30 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.07.30</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-07-27.jpg" alt="2026.07.27 연구실 단체 회식" loading="lazy"><figcaption><b>2026.07.27</b>연구실 단체 회식</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-07-14.jpg" alt="2026.07.14 경희대학교 선진원자로 하계 단기강좌" loading="lazy"><figcaption><b>2026.07.14</b>경희대학교 선진원자로 하계 단기강좌</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-06-19.jpg" alt="2026.06.19 원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)" loading="lazy"><figcaption><b>2026.06.19</b>원자력 유관기관 견학 (UNIST 방인철 교수님 연구실)</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-06-18.jpg" alt="2026.06.18 경상국립대 김형모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.18</b>경상국립대 김형모 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-06-11.jpg" alt="2026.06.11 경북대학교 박해균 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.11</b>경북대학교 박해균 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-06-10.jpg" alt="2026.06.10 KENTECH 김경모 교수님 초청 세미나" loading="lazy"><figcaption><b>2026.06.10</b>KENTECH 김경모 교수님 초청 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-05-15.jpg" alt="2026.05.15 스승의날 행사" loading="lazy"><figcaption><b>2026.05.15</b>스승의날 행사</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-04-23.jpg" alt="2026.04.23 KAERI 서한박사님 세미나" loading="lazy"><figcaption><b>2026.04.23</b>KAERI 서한박사님 세미나</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-04-15.jpg" alt="2026.04.15 연구실 단체 사진" loading="lazy"><figcaption><b>2026.04.15</b>연구실 단체 사진</figcaption></figure>
+    <figure data-year="2026"><img src="images/gallery/2026-04-09.jpg" alt="2026.04.09 연구실 첫 회식" loading="lazy"><figcaption><b>2026.04.09</b>연구실 첫 회식</figcaption></figure>
   </div>
-  <div style="text-align:center;margin-top:26px"><button class="btn" id="gal-more" type="button">View all photos (전체 보기)</button></div>
+  <div style="text-align:center;margin-top:26px"><button class="btn" id="gal-more" type="button" hidden>View all photos (전체 보기)</button></div>
 </div></section>
 
 <!-- ---------- JOIN US ---------- -->
@@ -659,9 +660,24 @@ mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobile.cl
 function showPane(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.pane===id));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+id));}
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showPane(t.dataset.pane)));
 document.querySelectorAll('[data-tab]').forEach(a=>a.addEventListener('click',()=>showPane(a.dataset.tab)));
-// gallery: show all
-const galMore=document.getElementById('gal-more');
-if(galMore){galMore.addEventListener('click',()=>{const g=document.querySelector('.gallery');g.classList.toggle('open');galMore.textContent=g.classList.contains('open')?'Show less (접기)':'View all photos (전체 보기)';});}
+// gallery: year tabs + show-all
+const gal=document.querySelector('.gallery'),galTabs=document.getElementById('gal-tabs'),galMore=document.getElementById('gal-more');
+if(gal&&galTabs&&galMore){
+  const figs=[...gal.querySelectorAll('figure')],LIMIT=9;
+  const years=[...new Set(figs.map(f=>f.dataset.year))].sort().reverse();
+  let year=years[0],open=false;
+  galTabs.innerHTML=years.map(y=>`<button class="tab" type="button" data-year="${y}">${y}</button>`).join('');
+  function render(){
+    let n=0,total=0;
+    figs.forEach(f=>{const inYear=f.dataset.year===year;if(inYear)total++;const show=inYear&&(open||n<LIMIT);if(inYear)n++;f.hidden=!show;});
+    galMore.hidden=total<=LIMIT;
+    galMore.textContent=open?'Show less (접기)':`View all ${total} photos (전체 보기)`;
+    galTabs.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.year===year));
+  }
+  galTabs.addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;year=t.dataset.year;open=false;render();});
+  galMore.addEventListener('click',()=>{open=!open;render();if(!open)gal.scrollIntoView({behavior:'smooth'});});
+  render();
+}
 // active nav & page top
 const topBtn=document.getElementById('top');
 const secs=[...document.querySelectorAll('section[id]')];
