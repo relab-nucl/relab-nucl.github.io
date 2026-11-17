@@ -42,7 +42,7 @@ data/        # (예정) members.json, publications.json 등 데이터 분리 시
 - 언어: 영문 메뉴/제목 + 한글 본문 혼용 (NETHS 방식).
 
 ## 채워야 할 자리표시자
-- Footer SNS 링크 (현재 `#`). 교수 개인 링크(Google Scholar, LinkedIn)는 히어로 프로필 카드의 아이콘으로 들어가 있음.
+- Footer SNS 아이콘(Facebook·LinkedIn·X·YouTube)은 사용자 요청으로 삭제(2026-11-17). 교수 개인 링크(Google Scholar, LinkedIn)는 프로필 카드의 아이콘으로만 제공.
 - 상단 유틸바: 전북대학교(jbnu.ac.kr), 양자시스템공학과(atom.jbnu.ac.kr) 링크 반영 완료.
 
 ## 향후 계획
